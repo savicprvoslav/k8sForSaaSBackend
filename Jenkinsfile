@@ -59,7 +59,7 @@ volumes: [
     }
     stage('Run helm') {
       container('helm') {
-        sh "helm upgrade --install k8sForSaaSBackend ./chart/ --set image.tag=${gitCommit}"
+        sh "helm upgrade --install k8sforsaasbackend ./chart/ --set image.tag=${gitCommit}"
       }
     }
   }
