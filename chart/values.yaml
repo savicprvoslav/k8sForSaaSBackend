@@ -5,7 +5,7 @@
 replicaCount: 1
 
 image:
-  repository: savicprvoslav/k8sForSaasBackend
+  repository: savicprvoslav/k8sforsaasbackend
   tag: latest
   pullPolicy: IfNotPresent
 
