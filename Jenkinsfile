@@ -3,7 +3,6 @@ def label = "worker-${UUID.randomUUID().toString()}"
 podTemplate(label: label, containers: [
   containerTemplate(name: 'maven', image: 'maven', command: 'cat', ttyEnabled: true),
   containerTemplate(name: 'docker', image: 'docker', command: 'cat', ttyEnabled: true),
-  containerTemplate(name: 'kubectl', image: 'lachlanevenson/k8s-kubectl:v1.8.8', command: 'cat', ttyEnabled: true),
   containerTemplate(name: 'helm', image: 'lachlanevenson/k8s-helm:v2.10.0', command: 'cat', ttyEnabled: true)
 ],
 volumes: [
@@ -52,11 +51,7 @@ volumes: [
         }
       }
     }
-    stage('Run kubectl') {
-      container('kubectl') {
-        sh "kubectl get pods"
-      }
-    }
+
     stage('Run helm') {
       container('helm') {
         sh "helm upgrade --install k8sforsaasbackend ./chart/ --set image.tag=${gitCommit}"
